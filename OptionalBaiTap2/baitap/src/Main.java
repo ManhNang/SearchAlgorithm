@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -7,30 +6,37 @@ public class Main {
         System.out.print("Enter a string: ");
         String string = input.nextLine();
 
-        LinkedList<Character> max = new LinkedList<>();
+        if (string == null || string.isEmpty()) {
+            return;
+        }
 
-        // Độ phức tạp 0(n^2)
-        for (int i = 0; i < string.length(); i++) {
-            LinkedList<Character> list = new LinkedList<>();
-            list.add(string.charAt(i));
+        StringBuilder max = new StringBuilder();
+        StringBuilder current = new StringBuilder();
 
-            for (int j = i + 1; j < string.length(); j++) {
-                if (string.charAt(j) > list.getLast()) {
-                    list.add(string.charAt(j));
-                } else {
-                    break;
+        current.append(string.charAt(0));
+        max.append(string.charAt(0));
+
+        // Độ phức tạp O(N)
+        for (int i = 1; i < string.length(); i++) {
+            char ch = string.charAt(i);
+
+            if (ch > current.charAt(current.length() - 1)) {
+                current.append(ch);
+            } else {
+                if (current.length() > max.length()) {
+                    max.setLength(0);
+                    max.append(current);
                 }
-            }
-
-            if (list.size() > max.size()) {
-                max.clear();
-                max.addAll(list);
+                current.setLength(0);
+                current.append(ch);
             }
         }
 
-        for (Character ch : max) {
-            System.out.print(ch);
+        if (current.length() > max.length()) {
+            max.setLength(0);
+            max.append(current);
         }
-        System.out.println();
+
+        System.out.println(max.toString());
     }
 }

@@ -9,7 +9,7 @@ public class Main {
 
         LinkedList<Character> max = new LinkedList<>();
         max.add(string.charAt(0));
-        // Độ phức tạp O(N)
+        // Độ phức tạp thời gian của chương trình O(N)
         for (int i = 1; i < string.length(); i++) {
             if (string.charAt(i) > max.getLast()) {
                 max.add(string.charAt(i));
