@@ -9,6 +9,7 @@ public class Main {
 
         LinkedList<Character> max = new LinkedList<>();
 
+        // Độ phức tạp 0(n^2)
         for (int i = 0; i < string.length(); i++) {
             LinkedList<Character> list = new LinkedList<>();
             list.add(string.charAt(i));
